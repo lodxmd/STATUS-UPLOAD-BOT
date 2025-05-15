@@ -1,10 +1,9 @@
 import * as baileys from '@whiskeysockets/baileys'
 import P from 'pino'
-import fs from 'fs'
 import qrcode from 'qrcode'
 
 const makeWASocket = baileys.default
-const { useSingleFileAuthState } = baileys
+const useSingleFileAuthState = baileys.useSingleFileAuthState
 
 const { state, saveState } = useSingleFileAuthState('./auth.json')
 
