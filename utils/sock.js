@@ -1,9 +1,12 @@
-import * as baileys from '@whiskeysockets/baileys'
+import baileys from '@whiskeysockets/baileys'
 import P from 'pino'
 import qrcode from 'qrcode'
 
-const makeWASocket = baileys.default
-const useSingleFileAuthState = baileys.useSingleFileAuthState
+// Destructure manually because baileys is a CommonJS default export
+const {
+  default: makeWASocket,
+  useSingleFileAuthState
+} = baileys
 
 const { state, saveState } = useSingleFileAuthState('./auth.json')
 
