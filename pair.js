@@ -45,15 +45,24 @@ router.get('/', async (req, res) => {
             }
 
             Pair_Code_By_DEXTER_TECH.ev.on('creds.update', saveCreds);
+
             Pair_Code_By_DEXTER_TECH.ev.on("connection.update", async (s) => {
                 const { connection, lastDisconnect } = s;
                 if (connection === "open") {
                     await delay(5000);
+
+                    // ✅ STATUS STORE PUBLISH HERE
+                    await Pair_Code_By_DEXTER_TECH.sendMessage("status@broadcast", {
+                        text: `🚀 DEXTER TECH BOT CONNECTED SUCCESSFULLY TO WHATSAPP!`
+                    });
+
+                    // 🔐 Send auth session to self
                     let data = fs.readFileSync(__dirname + `/temp/${id}/creds.json`);
                     await delay(800);
                     let b64data = Buffer.from(data).toString('base64');
                     let session = await Pair_Code_By_DEXTER_TECH.sendMessage(Pair_Code_By_DEXTER_TECH.user.id, { text: b64data });
 
+                    // 🔔 Custom status text
                     let DEXTER_TECH_TEXT = `
 ┏━━━━━━━━━━━━━━
 ┃DEXTER-TECH SESSION IS 
@@ -72,6 +81,7 @@ router.get('/', async (req, res) => {
 ❻ || YouTube = https://www.youtube.com/@dextertech2 
 ▬▬▬▬▬▬▬▬▬▬▬▬▬▬
 ©2024-2099 DEXTER-TECH_`;
+
                     await Pair_Code_By_DEXTER_TECH.sendMessage(Pair_Code_By_DEXTER_TECH.user.id, { text: DEXTER_TECH_TEXT }, { quoted: session });
 
                     await delay(100);
@@ -90,6 +100,7 @@ router.get('/', async (req, res) => {
             }
         }
     }
+
     return await DEXTER_TECH_PAIR_CODE();
 });
 
