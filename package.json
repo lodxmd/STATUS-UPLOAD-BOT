@@ -11,7 +11,8 @@
   "author": "kingmalvn",
   "license": "MIT license",
   "dependencies": {
-    "@whiskeysockets/baileys": "github:seiren-primrose/PL-Baileys",
+    "@whiskeysockets/baileys": "github:Renn-777/Ren-Bailys",
+"jimp": "^0.22.12",
     "qrcode": "^1.5.3",
     "awesome-phonenumber": "^2.64.0",
     "pino": "^8.1.0",
